@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+// Learn React Hooks by building a counter application
 
-function App() {
+import React, { useState } from 'react'
+
+// Define the App component having a counter, name and age state
+// The counter state will be incremented on button click
+// The name state will be updated as user types in the input field
+// The age state is a static value
+// Display the counter, name and age state value
+
+const App = () => {
+  const [details, setDetails] = useState({
+    counter: 0,
+    name: "",
+    age: 55
+  });
+
+// Define a function increment to increment the counter state value
+
+  function increment() {
+    setDetails({
+      ...details,
+      counter: details.counter + 1
+    });
+  }
+
+// Return the JSX to display the counter, name and age state value
+// Display an input field to update the name state
+// Display the name, age and counter state value on button click
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <h2> Counter: {details.counter}</h2>
+        <input
+          type="text"
+          placeholder="Name"
+          onChange={(e) => setDetails({ ...details, name: e.target.value })}
+        />
+        <h2> Name: {details.name}</h2>
+        <h2> Age: {details.age}</h2>
+        <h2>App Component</h2>
+ 
+        <h1>{details.name} having age {details.age} has clicked {details.counter} times</h1>
+        <button hover onClick={increment} >Increment</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
