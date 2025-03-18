@@ -1,6 +1,6 @@
 // Learn React Hooks by building a counter application
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Define the App component having a counter, name and age state
 // The counter state will be incremented on button click
@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 // The age state is a static value
 // Display the counter, name and age state value
 
+// Use the useState hook to define the counter, name and age state
 const App = () => {
   const [details, setDetails] = useState({
     counter: 0,
@@ -15,14 +16,18 @@ const App = () => {
     age: 55
   });
 
-// Define a function increment to increment the counter state value
+// Use the useEffect hook to update the document title dynamically with the counter state value
+useEffect(() => {
+    document.title = `You clicked ${details.counter} times`;
+}, [ details.counter ]);
 
-  function increment() {
+// Define a function increment to increment the counter state value
+function increment() {
     setDetails({
       ...details,
       counter: details.counter + 1
     });
-  }
+}
 
 // Return the JSX to display the counter, name and age state value
 // Display an input field to update the name state
